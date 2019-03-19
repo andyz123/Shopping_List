@@ -1,2 +1,2 @@
-# To-do-List
-To-do list web app.
+# Grocery List
+Decide on groceries before going out!
