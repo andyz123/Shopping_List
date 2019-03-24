@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+	<div class='box' id = 'heading'>
+		<h1> <%=currentDay%> </h1>
+	</div>
+
+	<div class = 'box'>
+
+		<% for (let i = 0; i < groceries.length; i++){ %>
+			<div class = 'item'>
+				<input type="checkbox">
+				<p> <%= groceries[i] %> </p>
+			</div>
+
+		<% } %>
+
+	<form action= "/" method="post" accept-charset="utf-8">
+		<input type="text" name="newItem" placeholder='Add Grocery' autocomplete="off">
+		<button type="submit" name='button'>+</button>
+		<input type="number" name="price" placeholder='Add Price' autocomplete="off">
+		<button type="submit" name='button'>+</button>
+	</form>
+
+	</div>
+
+	<footer>
+		Andy Zheng
+	</footer>
+</body>
+</html>
