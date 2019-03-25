@@ -8,7 +8,7 @@
 
 <body>
 	<!-- Header -->
-	
+
 	<div class='box' id = 'heading'>
 		<h1> <%=day%> </h1>
 	</div>
@@ -21,7 +21,7 @@
 			<div class = 'item'>
 				<input type="checkbox">
 				<p> 
-					<%= groceries[i] %> : $<%= prices[i] %> 
+					<%= groceries[i].name %> <i>x<%= groceries[i].quantity %> </i> : $<%= groceries[i].price %>/ea. Total: $<%= groceries[i].sum %> 
 				</p>
 			</div>
 		<% } %>
@@ -32,17 +32,17 @@
 	
 	<form action= "/" method="post" accept-charset="utf-8">
 		<input type="text" name="newItem" placeholder='Add Grocery' autocomplete="off" required>
-		<button type="submit" name='button'>+</button>
+		<button class='invisible' type="submit" name='button' disabled>+</button>
 		<input type="number" name="amount" placeholder='How many?' autocomplete="off" required step='1' min="1">
-		<button type="submit" name='button'>+</button>
+		<button class='invisible' type="submit" name='button' disabled>+</button>
 		<input type="number" name="newPrice" placeholder='Price Per Unit' autocomplete="off" required step="0.01" min="0">
 		<button type="submit" name='button'>+</button>
 	</form>
-
+	
 	</div>
 	
 	<div class='box' id='totalPrice'>
-		<h3>Total Price: $<%= sum %> </h3>
+		<h3>Total Price: $<%= sum %></h3>
 	</div>
 
 	<footer>

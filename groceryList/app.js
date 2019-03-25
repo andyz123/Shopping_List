@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
 
 const app = express();
 
@@ -8,10 +9,19 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+mongoose.connect('mongodb://localhost:27017/GroceryListDB', { useNewUrlParser: true })
 
-let groceries = [];
-let prices = [];
-let sum = 0;
+const groceryModel = {
+	name: {
+		type: String,
+		unique: true
+	},
+	price: Number,
+	quantity: Number,
+	sum: Number
+};
+
+const Grocery = mongoose.model('Grocery', groceryModel);
 
 app.get('/', function(req, res){
 	let date = new Date();
@@ -23,25 +33,35 @@ app.get('/', function(req, res){
 	};
 
 	let day = date.toLocaleDateString('en-US', options);
-
-	res.render('groceryList', {
+	let sum = 0;
+	Grocery.find({}, function(err, foundGroceries){
+		for (let i = 0; i < foundGroceries.length; i++){
+			sum += foundGroceries[i].sum;
+		}
+		res.render('groceryList', {
 		day: day,
-		groceries: groceries,
-		prices: prices,
-		sum: sum.toFixed(2)
+		groceries: foundGroceries,
+		sum: sum
 	});
+	})
+
 });
 
 app.post('/', function(req, res){
 	let newItem = req.body.newItem;
 	let newPrice = req.body.newPrice;
-	let amount = req.body.amount;
-	
+	let quantity = req.body.amount;
+
 	// Checks if the item is not just white-space, all numbers, or a duplicate.
-	if (newItem.replace(/\s/g, '').length && isNaN(newItem) && groceries.includes(newItem) == false) {
-		groceries.push(newItem);
-		prices.push(newPrice * amount);
-		sum += parseFloat(newPrice)
+	if (newItem.replace(/\s/g, '').length && isNaN(newItem)) {
+		const grocery = new Grocery({
+			name: newItem,
+			price: newPrice.toFix(2),
+			quantity: quantity,
+			sum: newPrice.toFix(2) * quantity
+		});
+		grocery.save();
+
 	} else {
 		console.log('Enter groceries!')
 	}
