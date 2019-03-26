@@ -1,0 +1,20 @@
+{
+  "name": "grocerylist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy",
+  "license": "ISC",
+  "engines": {
+    "node": "10.15.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  }
+}
