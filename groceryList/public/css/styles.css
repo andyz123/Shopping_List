@@ -11,6 +11,14 @@ h1 {
 }
 
 .box {
+  max-width: 500px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+.formBox{
   max-width: 400px;
   margin: 40px auto;
   background: white;
@@ -33,11 +41,19 @@ h1 {
   text-align: center;
 }
 
+#heading:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 #totalPrice {
   background-color: #e3fdfd;
   text-align: center;
   padding: 1px;
   color: #71c9ce;
+}
+
+#totalPrice:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .item {
@@ -83,6 +99,23 @@ button {
   font-size: 30px;
   padding-bottom: 6px;
   border-width: 0;
+  display: inline-block;
+  margin: auto auto; 
+}
+
+#buttonalign {
+  text-align:center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#plus:hover {
+  background-color: #00b8a9;
+  
+}
+
+#minus:hover {
+  background-color: #ff2e63;
 }
 
 input[type="text"], input[type="number"] {

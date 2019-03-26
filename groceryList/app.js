@@ -56,9 +56,9 @@ app.post('/', function(req, res){
 	if (newItem.replace(/\s/g, '').length && isNaN(newItem)) {
 		const grocery = new Grocery({
 			name: newItem,
-			price: newPrice.toFix(2),
+			price: newPrice,
 			quantity: quantity,
-			sum: newPrice.toFix(2) * quantity
+			sum: newPrice * quantity
 		});
 		grocery.save();
 
@@ -67,6 +67,19 @@ app.post('/', function(req, res){
 	}
 
 	res.redirect('/');
+});
+
+app.post('/delete', function(req, res){
+	let groceryItem = req.body.delete;
+
+	Grocery.findByIdAndRemove(groceryItem, function(err){
+		if (!err){
+			console.log('Item deleted.');
+			res.redirect('/');
+		} else {
+			console.log('Item not deleted.');
+		}
+	});
 });
 
 app.listen(3000, function(){
