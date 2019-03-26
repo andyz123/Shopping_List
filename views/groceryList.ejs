@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+	<!-- Header -->
+
+	<div class='box' id = 'heading'>
+		<h1> <%=day%> </h1>
+	</div>
+
+	<!-- Grocery List -->
+
+	<div class = 'box'>
+
+		<% for (let i = 0; i < groceries.length; i++){ %>
+			<form action="/delete" method="post" accept-charset="utf-8" id='delete'>
+				
+			<div class = 'item'>
+				<input type='checkbox' name='delete' value='<%= groceries[i]._id %>' form='delete'>
+				<p>
+					<%= groceries[i].name %> <i>x<%= groceries[i].quantity %> </i> : $<%= groceries[i].price.toFixed(2) %>/ea. Total: $<%= groceries[i].sum.toFixed(2) %> 
+				</p>
+			</div>
+			</form>
+		<% } %>
+	</div>
+
+	
+	<div class = 'formBox'>
+	
+	<form action= "/" method="post" accept-charset="utf-8" id='add'>
+		<input type="text" name="newItem" placeholder='Add Grocery' autocomplete="off" required>
+		<input type="number" name="amount" placeholder='How many?' autocomplete="off" required step='1' min="1">
+		<input type="number" name="newPrice" placeholder='Price Per Unit' autocomplete="off" required step="0.01" min="0">
+	</form>
+	<div id='buttonalign'>
+		<button type="submit" name='button' form='add' id='plus'>+</button>
+		<button type="submit" name='button' form='delete' id='minus'>-</button>
+		</div>
+	</div>
+	
+	<div class='formBox' id='totalPrice'>
+		<h3>Total Price: $<%= sum.toFixed(2) %></h3>
+	</div>
+
+	<footer>
+		Andy Zheng
+	</footer>
+</body>
+</html>
