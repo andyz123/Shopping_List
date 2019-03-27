@@ -33,10 +33,12 @@ app.get('/', function(req, res){
 		day: 'numeric', 
 		month: 'long'
 	};
-
+	
+	// Displays the formatted date in the EJS view.
 	let day = date.toLocaleDateString('en-US', options);
 	let sum = 0;
 	Grocery.find({}, function(err, foundGroceries){
+		// Adds the price of all items to get total sum.
 		for (let i = 0; i < foundGroceries.length; i++){
 			sum += foundGroceries[i].sum;
 		}
@@ -73,7 +75,8 @@ app.post('/', function(req, res){
 
 app.post('/delete', function(req, res){
 	let groceryItem = req.body.delete;
-
+	
+	// Receives the ID value from the EJS view and deletes from database.
 	Grocery.findByIdAndRemove(groceryItem, function(err){
 		if (!err){
 			console.log('Item deleted.');
@@ -84,6 +87,7 @@ app.post('/delete', function(req, res){
 	});
 });
 
+// Just for Heroku. Allows user to run this application locally on port 3000 if needed.
 let port = process.env.PORT;
 if (port == null || port == '') {
 	port = 3000;
