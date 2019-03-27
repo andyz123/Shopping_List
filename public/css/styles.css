@@ -61,6 +61,12 @@ h1 {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #F1F1F1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item:hover {
+  overflow: visible;
 }
 
 .item:last-child {
@@ -129,9 +135,13 @@ input[type="text"], input[type="number"] {
   width: 313px;
 }
 
-input[type="text"]:focus, input[type="text"]:hover, input[type="number"]:focus, input[type="number"]:hover {
+input[type="text"]:focus, input[type="number"]:focus {
   outline: none;
   box-shadow: inset 0 -3px 0 0 #71c9ce;
+}
+
+input[type="text"]:hover, input[type="number"]:hover {
+  box-shadow: inset 0 0 10px 2px #71c9ce;
 }
 
 ::placeholder {
@@ -143,6 +153,10 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+.andy:hover{
+  box-shadow: inset 0 -3px 0 0 #e3fdfd;
 }
 
 input[type='number'] {
